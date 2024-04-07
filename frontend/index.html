@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with Phantom Wallet</title>
+    <!-- Include Phantom wallet script -->
+    <script src="https://solana-wallet-adapter-extended.phantom.app/static/js/wallet.js"></script>
+    <!-- CSS styles for the button and heading -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 36px; /* Increased font size */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Changed font style */
+        }
+        button {
+            background-color: #fff; /* White button */
+            border: 2px solid #fff; /* White border */
+            color: #000; /* Black text */
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        button:hover {
+            background-color: #333; /* Dark gray on hover */
+            border-color: #333; /* Dark gray border on hover */
+            color: #fff; /* White text on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>TrustNFT</h1> <!-- Added heading "TrustNFT" -->
+    <h2>Connect with Phantom Wallet</h2>
+
+    <!-- Button to connect with Phantom wallet -->
+    <button onclick="connectWithPhantom()">Connect with Wallet</button>
+
+    <!-- JavaScript code to connect with Phantom wallet -->
+    <script>
+        async function connectWithPhantom() {
+            // Check if Phantom wallet is installed
+            if (!window.solana || !window.solana.isPhantom) {
+                console.error('Phantom wallet is not installed.');
+                // Redirect to another page if Phantom wallet is not installed
+                window.location.href = '';
+                return;
+            }
+
+            try {
+                // Connect with Phantom wallet
+                const connected = await window.solana.connect();
+                if (connected) {
+                    console.log('Connected with Phantom wallet successfully!');
+                    window.location.href = 'index';
+                    // Perform additional actions after connecting with the wallet
+                } else {
+                    console.error('Failed to connect with Phantom wallet.');
+                    // Redirect to another page if failed to connect with Phantom wallet
+                    window.location.href = '';
+                }
+            } catch (error) {
+                console.error('Error connecting with Phantom wallet:', error);
+                // Redirect to another page if an error occurs while connecting with Phantom wallet
+                window.location.href = 'https://example.com/error.html';
+            }
+        }
+    </script>
+</body>
+</html>
